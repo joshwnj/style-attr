@@ -1,0 +1,27 @@
+{
+  "name": "style-attr",
+  "version": "1.0.0",
+  "description": "Parse and stringify style attributes",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshwnj/style-attr"
+  },
+  "keywords": [
+    "style",
+    "parse",
+    "stringify"
+  ],
+  "author": "joshwnj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshwnj/style-attr/issues"
+  },
+  "homepage": "https://github.com/joshwnj/style-attr",
+  "devDependencies": {
+    "tape": "^3.0.2"
+  }
+}
