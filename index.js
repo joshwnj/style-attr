@@ -5,7 +5,7 @@ style-attr
 
 Very simple parsing and stringifying of style attributes.
 
-parse
+`parse`
 ----
 
 Convert a style attribute string to an object.
@@ -31,7 +31,7 @@ function parse (raw) {
 
 /*
 
-stringify
+`stringify`
 ----
 
 Convert an object into an attribute string
@@ -50,7 +50,7 @@ function stringify (obj) {
 
 /*
 
-normalize
+`normalize`
 ----
 
 Normalize an attribute string (eg. collapse duplicates)

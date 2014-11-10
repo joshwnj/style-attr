@@ -10,7 +10,7 @@ var tape = require('tape');
 var style = require('./index.js');
 
 tape('Basic usage', function (t) {
-  //> tests for [[style-attr][parse]]
+  //> tests for [[style-attr][`parse`]]
   var raw = ';color:red; font-size: 26px;  color :  blue     ;';
   var obj = style.parse(raw);
 
@@ -28,7 +28,7 @@ tape('Basic usage', function (t) {
     'blue',
     'Whitespace is trimmed from values');
 
-  //> tests for [[style-attr][stringify]]
+  //> tests for [[style-attr][`stringify`]]
   var str = style.stringify(obj);
   t.equal(
     str,
@@ -40,7 +40,7 @@ tape('Basic usage', function (t) {
     obj,
     'Subsequent parse/stringify actions are idempotent');
 
-  //> tests for [[style-attr][normalize]]
+  //> tests for [[style-attr][`normalize`]]
   t.equal(
     style.normalize(raw),
     style.stringify(obj),
