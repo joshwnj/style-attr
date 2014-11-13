@@ -53,3 +53,16 @@ tape('Basic usage', function (t) {
 
   t.end();
 });
+
+tape('Background images', function (t) {
+  var url = 'url(http://38.media.tumblr.com/tumblr_l5y2n9EIiN1qci224o1_250.gif)';
+  var raw = 'background: ' + url;
+
+  var obj = style.parse(raw);
+  t.equal(
+    obj.background,
+    url,
+    'URL values are parsed correctly');
+
+  t.end();
+});

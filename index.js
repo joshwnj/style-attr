@@ -22,8 +22,12 @@ function parse (raw) {
     .map(trim)
     .filter(Boolean)
     .forEach(function (item) {
-      var parts = item.split(':').map(trim);
-      obj[parts[0]] = parts[1];
+      // split with `.indexOf` rather than `.split` because the value may also contain colons.
+      var pos = item.indexOf(':');
+      var key = item.substr(0, pos).trim();
+      var val = item.substr(pos + 1).trim();
+
+      obj[key] = val;
     });
 
   return obj;
