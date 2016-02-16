@@ -66,3 +66,16 @@ tape('Background images', function (t) {
 
   t.end();
 });
+
+tape('Data URIs', function (t) {
+  var url = 'url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAABlBMVEUAAAD///+l2Z/dAAAAM0lEQVR4nGP4/5/h/1+G/58ZDrAz3D/McH8yw83NDDeNGe4Ug9C9zwz3gVLMDA/A6P9/AFGGFyjOXZtQAAAAAElFTkSuQmCC)';
+  var raw = 'background: ' + url;
+
+  var obj = style.parse(raw);
+  t.equal(
+    obj.background,
+    url,
+    'URL values are parsed correctly');
+
+  t.end();
+});

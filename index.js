@@ -17,8 +17,8 @@ Convert a style attribute string to an object.
 function parse (raw) {
   var trim = function (s) { return s.trim(); };
   var obj = {};
-  raw
-    .split(';')
+
+  getKeyValueChunks(raw)
     .map(trim)
     .filter(Boolean)
     .forEach(function (item) {
@@ -31,6 +31,45 @@ function parse (raw) {
     });
 
   return obj;
+}
+
+/*
+
+`getKeyValueChunks`
+----
+
+Split a string into chunks matching `<key>: <value>`
+
+- input: string
+- return: Array<string>
+
+*/
+function getKeyValueChunks (raw) {
+  var chunks = [];
+  var offset = 0;
+  var sep = ';';
+  var hasUnclosedUrl = /url\([^\)]+$/;
+  var chunk = '';
+  var nextSplit;
+  while (offset < raw.length) {
+    nextSplit = raw.indexOf(sep, offset);
+    if (nextSplit === -1) { nextSplit = raw.length; }
+
+    chunk += raw.substring(offset, nextSplit);
+
+    // data URIs can contain semicolons, so make sure we get the whole thing
+    if (hasUnclosedUrl.test(chunk)) {
+      chunk += ';';
+      offset = nextSplit + 1;
+      continue;
+    }
+
+    chunks.push(chunk);
+    chunk = '';
+    offset = nextSplit + 1;
+  }
+
+  return chunks;
 }
 
 /*
