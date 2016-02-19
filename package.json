@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel --out-dir lib src",
-    "flow": "flow",
+    "flow": "flow check src/",
     "test": "tape test.js",
     "prepublish": "npm run build"
   },

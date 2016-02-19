@@ -12,9 +12,6 @@ Very simple parsing and stringifying of style attributes.
 
 Convert a style attribute string to an object.
 
-- input: string (eg. anything you might see in a style attribute)
-- return: object
-
 */
 function parse (raw: string): {} {
   var trim = function (s) { return s.trim(); };
@@ -42,11 +39,8 @@ function parse (raw: string): {} {
 
 Split a string into chunks matching `<key>: <value>`
 
-- input: string
-- return: Array<string>
-
 */
-function getKeyValueChunks (raw) {
+function getKeyValueChunks (raw: string): Array<string> {
   var chunks = [];
   var offset = 0;
   var sep = ';';
@@ -81,9 +75,6 @@ function getKeyValueChunks (raw) {
 
 Convert an object into an attribute string
 
-- input: object
-- return: string
-
 */
 function stringify (obj: {}): string {
   return Object.keys(obj)
@@ -99,9 +90,6 @@ function stringify (obj: {}): string {
 ----
 
 Normalize an attribute string (eg. collapse duplicates)
-
-- input: string
-- return: string
 
 */
 function normalize (str: string): string {
