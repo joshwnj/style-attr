@@ -28,7 +28,6 @@
   ],
   "homepage": "https://github.com/joshwnj/style-attr",
   "devDependencies": {
-    "babel": "^6.5.2",
     "babel-cli": "^6.5.1",
     "babel-plugin-transform-flow-strip-types": "^6.5.0",
     "flow-bin": "^0.21.0",
