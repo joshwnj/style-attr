@@ -7,7 +7,7 @@ Can be run with `npm run test`
 
 */
 var tape = require('tape');
-var style = require('./index.js');
+var style = require('./');
 
 tape('Basic usage', function (t) {
   //> tests for [[style-attr][`parse`]]

@@ -2,9 +2,12 @@
   "name": "style-attr",
   "version": "1.0.2",
   "description": "Parse and stringify style attributes",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "tape test.js"
+    "build": "babel --out-dir lib src",
+    "flow": "flow check src/",
+    "test": "tape test.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -20,8 +23,14 @@
   "bugs": {
     "url": "https://github.com/joshwnj/style-attr/issues"
   },
+  "files": [
+    "lib"
+  ],
   "homepage": "https://github.com/joshwnj/style-attr",
   "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-plugin-transform-flow-strip-types": "^6.5.0",
+    "flow-bin": "^0.21.0",
     "tape": "^3.0.2"
   }
 }
