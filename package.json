@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel --out-dir lib src",
     "flow": "flow check src/",
-    "test": "tape test.js",
+    "test": "npm run flow && tape test.js",
     "prepublish": "npm run build"
   },
   "repository": {
