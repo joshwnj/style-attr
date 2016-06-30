@@ -1,7 +1,6 @@
-/* @flow */
+// @flow
 
-// attribute map
-type Attr = { [key: string]: string }
+/*:: type Attr = { [key: string]: string } */
 
 /*
 
@@ -16,7 +15,9 @@ Very simple parsing and stringifying of style attributes.
 Convert a style attribute string to an object.
 
 */
-function parse (raw: string): Attr {
+
+/*:: declare function parse (raw: string): Attr */
+function parse (raw) {
   var trim = function (s) { return s.trim(); };
   var obj = {};
 
@@ -43,7 +44,8 @@ function parse (raw: string): Attr {
 Split a string into chunks matching `<key>: <value>`
 
 */
-function getKeyValueChunks (raw: string): Array<string> {
+/*:: declare function getKeyValueChunks (raw: string): Array<string> */
+function getKeyValueChunks (raw) {
   var chunks = [];
   var offset = 0;
   var sep = ';';
@@ -79,7 +81,8 @@ function getKeyValueChunks (raw: string): Array<string> {
 Convert an object into an attribute string
 
 */
-function stringify (obj: Attr): string {
+/*:: declare function stringify (obj: Attr): string */
+function stringify (obj) {
   return Object.keys(obj)
     .map(function (key) {
       return key + ':' + obj[key];
@@ -95,7 +98,8 @@ function stringify (obj: Attr): string {
 Normalize an attribute string (eg. collapse duplicates)
 
 */
-function normalize (str: string): string {
+/*:: declare function normalize (str: string): string */
+function normalize (str) {
   return stringify(parse(str));
 }
 
