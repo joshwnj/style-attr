@@ -1,6 +1,6 @@
 // @flow
 
-/*:: type Attr = { [key: string]: string } */
+/*:: type Attr = { [key: string]: string | number } */
 
 /*
 
@@ -16,8 +16,8 @@ Convert a style attribute string to an object.
 
 */
 
-/*:: declare function parse (raw: string): Attr */
-function parse (raw) {
+/*:: declare function parse (raw: string, preserveNumbers: ?boolean): Attr */
+function parse(raw, preserveNumbers) {
   var trim = function (s) { return s.trim(); };
   var obj = {};
 
@@ -29,11 +29,30 @@ function parse (raw) {
       var pos = item.indexOf(':');
       var key = item.substr(0, pos).trim();
       var val = item.substr(pos + 1).trim();
+      if (preserveNumbers && isNumeric(val)) {
+        val = Number(val);
+      }
 
       obj[key] = val;
     });
 
   return obj;
+}
+
+/*
+
+`isNumeric`
+----
+
+Check if a value is numeric.
+Via: https://stackoverflow.com/a/1830844/9324
+
+*/
+
+/*:: declare function isNumeric (n: any): boolean */
+
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
 /*
@@ -45,7 +64,7 @@ Split a string into chunks matching `<key>: <value>`
 
 */
 /*:: declare function getKeyValueChunks (raw: string): Array<string> */
-function getKeyValueChunks (raw) {
+function getKeyValueChunks(raw) {
   var chunks = [];
   var offset = 0;
   var sep = ';';
@@ -82,7 +101,7 @@ Convert an object into an attribute string
 
 */
 /*:: declare function stringify (obj: Attr): string */
-function stringify (obj) {
+function stringify(obj) {
   return Object.keys(obj)
     .map(function (key) {
       return key + ':' + obj[key];
@@ -98,9 +117,9 @@ function stringify (obj) {
 Normalize an attribute string (eg. collapse duplicates)
 
 */
-/*:: declare function normalize (str: string): string */
-function normalize (str) {
-  return stringify(parse(str));
+/*:: declare function normalize (str: string, preserveNumbers: ?boolean): string */
+function normalize(str, preserveNumbers) {
+  return stringify(parse(str, preserveNumbers));
 }
 
 module.exports.parse = parse;
