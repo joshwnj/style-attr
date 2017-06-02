@@ -18,8 +18,10 @@ Convert a style attribute string to an object.
 */
 
 /*:: declare function parse (raw: string, opts: ?Opts): Attr */
-function parse(raw, opts={}) {
-  const { preserveNumbers } = opts;
+function parse(raw, opts) {
+  opts = opts || {}
+
+  var preserveNumbers = opts.preserveNumbers;
   var trim = function (s) { return s.trim(); };
   var obj = {};
 
