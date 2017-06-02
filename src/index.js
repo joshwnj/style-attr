@@ -1,6 +1,7 @@
 // @flow
 
 /*:: type Attr = { [key: string]: string | number } */
+/*:: type Opts = { preserveNumbers: ?boolean } */
 
 /*
 
@@ -16,8 +17,9 @@ Convert a style attribute string to an object.
 
 */
 
-/*:: declare function parse (raw: string, preserveNumbers: ?boolean): Attr */
-function parse(raw, preserveNumbers) {
+/*:: declare function parse (raw: string, opts: ?Opts): Attr */
+function parse(raw, opts={}) {
+  const { preserveNumbers } = opts;
   var trim = function (s) { return s.trim(); };
   var obj = {};
 
@@ -117,9 +119,9 @@ function stringify(obj) {
 Normalize an attribute string (eg. collapse duplicates)
 
 */
-/*:: declare function normalize (str: string, preserveNumbers: ?boolean): string */
-function normalize(str, preserveNumbers) {
-  return stringify(parse(str, preserveNumbers));
+/*:: declare function normalize (str: string, opts: ?Opts): string */
+function normalize(str, opts) {
+  return stringify(parse(str, opts));
 }
 
 module.exports.parse = parse;
