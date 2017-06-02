@@ -29,7 +29,7 @@ tape('Basic usage', function (t) {
     'Whitespace is trimmed from values');
 
   var rawWithNumbers = ';color:red; font-size: 26px;  color :  blue     ;opacity: 0.35';
-  var obj2 = style.parse(rawWithNumbers, true);
+  var obj2 = style.parse(rawWithNumbers, { preserveNumbers: true });
 
   t.equal(
     obj2.opacity,
@@ -55,7 +55,7 @@ tape('Basic usage', function (t) {
     'Stringified version with numbers contains all object info');
 
   t.deepEqual(
-    style.parse(str2, true),
+    style.parse(str2, { preserveNumbers: true }),
     obj2,
     'Subsequent parse/stringify actions with numbers are idempotent');
 
@@ -71,7 +71,7 @@ tape('Basic usage', function (t) {
     'Normalizing is idempotent');
 
   t.equal(
-    style.normalize(rawWithNumbers, true),
+    style.normalize(rawWithNumbers, { preserveNumbers: true }),
     style.stringify(obj2),
     'Normalizing a string with numbers gives the same result as converting and back again');
 

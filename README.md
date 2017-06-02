@@ -11,7 +11,10 @@ Very simple parsing and stringifying of style attributes.
 
 Convert a style attribute string to an object.
 
-- input: string (eg. anything you might see in a style attribute)
+- inputs:
+  - string (eg. anything you might see in a style attribute)
+  - [options](#opts-object) (optional)
+
 - return: object
 
 
@@ -29,8 +32,28 @@ Convert an object into an attribute string
 
 Normalize an attribute string (eg. collapse duplicates)
 
-- input: string
+- inputs:
+  - string
+  - [options](#opts-object) (optional)
+
 - return: string
+
+Args
+----
+
+### `options`
+
+<a name="opts-object"></a>
+
+Options for `parse()` and `normalize` follow the same format:
+
+```
+{
+  preserveNumbers: boolean // (default: false)
+}
+```
+
+Setting `preserveNumbers` to `true` recognises number values and converts them to a Number.
 
 
 License
